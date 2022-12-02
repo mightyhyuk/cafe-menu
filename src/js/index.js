@@ -1,6 +1,12 @@
 const $ = (selector) => document.querySelector(selector);
 
 function App() {
+  $("#espresso-menu-list").addEventListener("click", (e) => {
+    if (e.target.classList.contains("menu-edit-button")) {
+      console.log(e.target);
+    }
+  });
+
   $("#espresso-menu-form").addEventListener("submit", (e) =>
     e.preventDefault()
   );

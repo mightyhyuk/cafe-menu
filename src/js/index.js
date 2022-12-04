@@ -10,6 +10,12 @@ function App() {
       );
       $menuName.innerText = updatedMenuName;
     }
+
+    if (e.target.classList.contains("menu-remove-button")) {
+      if (confirm("정말 삭제하시겠습니까?")) {
+        e.target.closest("li").remove();
+      }
+    }
   });
 
   $("#espresso-menu-form").addEventListener("submit", (e) =>

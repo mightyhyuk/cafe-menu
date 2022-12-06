@@ -69,9 +69,7 @@ function App() {
     e.preventDefault()
   );
 
-  $("#espresso-menu-submit-button").addEventListener("click", () => {
-    addMenuName();
-  });
+  $("#espresso-menu-submit-button").addEventListener("click", addMenuName);
 
   $("#espresso-menu-name").addEventListener("keypress", (e) => {
     if (e.key !== "Enter") return;

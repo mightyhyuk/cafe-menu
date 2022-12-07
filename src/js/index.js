@@ -1,6 +1,17 @@
 const $ = (selector) => document.querySelector(selector);
 
+const store = {
+  setLocalStorage(menu) {
+    localStorage.setItem("menu", JSON.stringify(menu));
+  },
+  getLocalStorage() {
+    localStorage.getItem("menu");
+  },
+};
+
 function App() {
+  const menus = [];
+
   const updateMenuCount = () => {
     const menuCount = $("#espresso-menu-list").querySelectorAll("li").length;
     $(".menu-count").innerText = `총 ${menuCount}개`;
@@ -13,10 +24,12 @@ function App() {
     }
 
     const espressoMenuName = $("#espresso-menu-name").value;
-
-    const menuItemTemplate = (espressoMenuName) => {
-      return `<li class="menu-list-item d-flex items-center py-2">
-        <span class="w-100 pl-2 menu-name">${espressoMenuName}</span>
+    menus.push({ name: espressoMenuName });
+    store.setLocalStorage(menus);
+    const template = menus
+      .map((menu) => {
+        return `<li class="menu-list-item d-flex items-center py-2">
+        <span class="w-100 pl-2 menu-name">${menu.name}</span>
         <button
           type="button"
           class="bg-gray-50 text-gray-500 text-sm mr-1 menu-edit-button"
@@ -30,12 +43,10 @@ function App() {
           삭제
         </button>
       </li>`;
-    };
+      })
+      .join("");
 
-    $("#espresso-menu-list").insertAdjacentHTML(
-      "beforeend",
-      menuItemTemplate(espressoMenuName)
-    );
+    $("#espresso-menu-list").innerHTML = template;
 
     updateMenuCount();
 

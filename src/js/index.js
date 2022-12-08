@@ -28,8 +28,8 @@ function App() {
     store.setLocalStorage(menus);
 
     $("#espresso-menu-list").innerHTML = menus
-      .map((menu) => {
-        return `<li class="menu-list-item d-flex items-center py-2">
+      .map((menu, index) => {
+        return `<li data-menu-id="${index}" class="menu-list-item d-flex items-center py-2">
       <span class="w-100 pl-2 menu-name">${menu.name}</span>
       <button
         type="button"
@@ -53,8 +53,11 @@ function App() {
   };
 
   const updateMenuName = (e) => {
+    const menuId = e.target.closest("li").dataset.menuId;
     const $menuName = e.target.closest("li").querySelector(".menu-name");
     const updatedMenuName = prompt("메뉴명을 수정하세요.", $menuName.innerText);
+    menus[menuId].name = updatedMenuName;
+    store.setLocalStorage(menus);
     $menuName.innerText = updatedMenuName;
   };
 

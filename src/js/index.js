@@ -5,12 +5,18 @@ const store = {
     localStorage.setItem("menu", JSON.stringify(menu));
   },
   getLocalStorage() {
-    localStorage.getItem("menu");
+    return localStorage.getItem("menu");
   },
 };
 
 function App() {
   this.menus = [];
+  this.init = () => {
+    if (store.getLocalStorage().length > 1) {
+      this.menus = store.getLocalStorage();
+      console.log(this.menus);
+    }
+  };
 
   const updateMenuCount = () => {
     const menuCount = $("#espresso-menu-list").querySelectorAll("li").length;
@@ -94,3 +100,4 @@ function App() {
 }
 
 const app = new App();
+app.init();

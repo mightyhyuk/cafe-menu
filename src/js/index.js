@@ -10,16 +10,24 @@ const store = {
 };
 
 function App() {
-  this.menus = [];
+  this.menu = {
+    espresso: [],
+    frappuccino: [],
+    blended: [],
+    teavana: [],
+    desert: [],
+  };
+  this.currentCategory = "espresso";
+
   this.init = () => {
-    if (store.getLocalStorage().length > 1) {
+    if (store.getLocalStorage()) {
       this.menus = store.getLocalStorage();
     }
     render();
   };
 
   const render = () => {
-    $("#espresso-menu-list").innerHTML = this.menus
+    $("#espresso-menu-list").innerHTML = this.menu[this.currentCategory]
       .map((menu, index) => {
         return `<li data-menu-id="${index}" class="menu-list-item d-flex items-center py-2">
       <span class="w-100 pl-2 menu-name">${menu.name}</span>
@@ -54,7 +62,7 @@ function App() {
     }
 
     const espressoMenuName = $("#espresso-menu-name").value;
-    this.menus.push({ name: espressoMenuName });
+    this.menu[this.currentCategory].push({ name: espressoMenuName });
     store.setLocalStorage(this.menus);
 
     render();

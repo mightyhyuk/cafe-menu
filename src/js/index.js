@@ -21,7 +21,7 @@ function App() {
 
   this.init = () => {
     if (store.getLocalStorage()) {
-      this.menus = store.getLocalStorage();
+      this.menu = store.getLocalStorage();
     }
     render();
   };
@@ -63,7 +63,7 @@ function App() {
 
     const espressoMenuName = $("#espresso-menu-name").value;
     this.menu[this.currentCategory].push({ name: espressoMenuName });
-    store.setLocalStorage(this.menus);
+    store.setLocalStorage(this.menu);
 
     render();
 
@@ -75,15 +75,15 @@ function App() {
     const $menuName = e.target.closest("li").querySelector(".menu-name");
     const updatedMenuName = prompt("메뉴명을 수정하세요.", $menuName.innerText);
     this.menu[this.currentCategory][menuId].name = updatedMenuName;
-    store.setLocalStorage(this.menus);
+    store.setLocalStorage(this.menu);
     $menuName.innerText = updatedMenuName;
   };
 
   const removeMenuName = (e) => {
     if (confirm("정말 삭제하시겠습니까?")) {
       const menuId = e.target.closest("li").dataset.menuId;
-      this.menus.splice(menuId, 1);
-      store.setLocalStorage(this.menus);
+      this.menu.splice(menuId, 1);
+      store.setLocalStorage(this.menu);
       e.target.closest("li").remove();
       updateMenuCount();
     }

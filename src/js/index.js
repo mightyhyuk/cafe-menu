@@ -30,7 +30,9 @@ function App() {
     $("#menu-list").innerHTML = this.menu[this.currentCategory]
       .map((menu, index) => {
         return `<li data-menu-id="${index}" class="menu-list-item d-flex items-center py-2">
-      <span class="w-100 pl-2 menu-name">${menu.name}</span>
+      <span class="w-100 pl-2 menu-name ${menu.soldOut ? "sold-out" : ""}">${
+          menu.name
+        }</span>
       <button
         type="button"
         class="bg-gray-50 text-gray-500 text-sm mr-1 menu-sold-out-button"
@@ -95,6 +97,13 @@ function App() {
     }
   };
 
+  const soldOutMenu = (e) => {
+    const menuId = e.target.closest("li").dataset.menuId;
+    this.menu[this.currentCategory][menuId].soldOut = true;
+    store.setLocalStorage(this.menu);
+    render();
+  };
+
   $("#menu-list").addEventListener("click", (e) => {
     if (e.target.classList.contains("menu-edit-button")) {
       updateMenuName(e);
@@ -102,6 +111,10 @@ function App() {
 
     if (e.target.classList.contains("menu-remove-button")) {
       removeMenuName(e);
+    }
+
+    if (e.target.classList.contains("menu-sold-out-button")) {
+      soldOutMenu(e);
     }
   });
 

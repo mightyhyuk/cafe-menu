@@ -99,7 +99,8 @@ function App() {
 
   const soldOutMenu = (e) => {
     const menuId = e.target.closest("li").dataset.menuId;
-    this.menu[this.currentCategory][menuId].soldOut = true;
+    this.menu[this.currentCategory][menuId].soldOut =
+      !this.menu[this.currentCategory][menuId].soldOut;
     store.setLocalStorage(this.menu);
     render();
   };

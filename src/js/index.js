@@ -108,14 +108,17 @@ function App() {
   $("#menu-list").addEventListener("click", (e) => {
     if (e.target.classList.contains("menu-edit-button")) {
       updateMenuName(e);
+      return;
     }
 
     if (e.target.classList.contains("menu-remove-button")) {
       removeMenuName(e);
+      return;
     }
 
     if (e.target.classList.contains("menu-sold-out-button")) {
       soldOutMenu(e);
+      return;
     }
   });
 

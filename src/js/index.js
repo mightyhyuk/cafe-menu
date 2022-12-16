@@ -92,7 +92,7 @@ function App() {
       const menuId = e.target.closest("li").dataset.menuId;
       this.menu[this.currentCategory].splice(menuId, 1);
       store.setLocalStorage(this.menu);
-      e.target.closest("li").remove();
+      render();
       updateMenuCount();
     }
   };

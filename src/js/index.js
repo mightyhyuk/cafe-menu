@@ -66,7 +66,7 @@ function App() {
 
     const menuName = $("#menu-name").value;
 
-    fetch(`${BASE_URL}/`, {
+    fetch(`${BASE_URL}/category/${this.currentCategory}/menu`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

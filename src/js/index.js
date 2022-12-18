@@ -1,6 +1,8 @@
 import { $ } from "./utils/dom.js";
 import store from "./store/index.js";
 
+const BASE_URL = "http://localhost:3000/api";
+
 function App() {
   this.menu = {
     espresso: [],
@@ -63,12 +65,22 @@ function App() {
     }
 
     const menuName = $("#menu-name").value;
-    this.menu[this.currentCategory].push({ name: menuName });
-    store.setLocalStorage(this.menu);
 
-    render();
+    fetch(`${BASE_URL}/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name: menuName }),
+    }).then((response) => {
+      console.log(response);
+    });
+    // this.menu[this.currentCategory].push({ name: menuName });
+    // store.setLocalStorage(this.menu);
 
-    $("#menu-name").value = "";
+    // render();
+
+    // $("#menu-name").value = "";
   };
 
   const updateMenuName = (e) => {

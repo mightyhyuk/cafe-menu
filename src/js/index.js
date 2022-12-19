@@ -72,9 +72,13 @@ function App() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ name: menuName }),
-    }).then((response) => {
-      console.log(response);
-    });
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+      });
     // this.menu[this.currentCategory].push({ name: menuName });
     // store.setLocalStorage(this.menu);
 

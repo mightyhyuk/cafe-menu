@@ -72,13 +72,9 @@ function App() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ name: menuName }),
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data);
-      });
+    }).then((response) => {
+      return response.json();
+    });
 
     await fetch(`${BASE_URL}/category/${this.currentCategory}/menu`)
       .then((response) => {

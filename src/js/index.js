@@ -85,15 +85,10 @@ function App() {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
+        this.menu[this.currentCategory] = data;
+        render();
+        $("#menu-name").value = "";
       });
-
-    // this.menu[this.currentCategory].push({ name: menuName });
-    // store.setLocalStorage(this.menu);
-
-    // render();
-
-    // $("#menu-name").value = "";
   };
 
   const updateMenuName = (e) => {

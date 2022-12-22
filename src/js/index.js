@@ -21,6 +21,20 @@ const MenuApi = {
       console.error("에러 발생");
     }
   },
+
+  async updateMenu(category, name, menuId) {
+    const response = await fetch(`${BASE_URL}/category/${category}/menu`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name }),
+    });
+    if (!response.ok) {
+      console.error("에러 발생");
+    }
+    return response.json();
+  },
 };
 
 function App() {

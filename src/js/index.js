@@ -60,8 +60,10 @@ function App() {
 
   const render = () => {
     $("#menu-list").innerHTML = this.menu[this.currentCategory]
-      .map((menu, index) => {
-        return `<li data-menu-id="${index}" class="menu-list-item d-flex items-center py-2">
+      .map((menu) => {
+        return `<li data-menu-id="${
+          menu.id
+        }" class="menu-list-item d-flex items-center py-2">
       <span class="w-100 pl-2 menu-name ${menu.soldOut ? "sold-out" : ""}">${
           menu.name
         }</span>

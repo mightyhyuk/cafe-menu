@@ -38,6 +38,18 @@ const MenuApi = {
     }
     return response.json();
   },
+
+  async toggleSoldOutMenu(category, menuId) {
+    const response = await fetch(
+      `${BASE_URL}/category/${category}/menu/${menuId}/soldout`,
+      {
+        method: "PUT",
+      }
+    );
+    if (!response.ok) {
+      console.error("에러 발생");
+    }
+  },
 };
 
 function App() {

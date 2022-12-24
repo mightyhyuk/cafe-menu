@@ -76,7 +76,7 @@ function App() {
         return `<li data-menu-id="${
           menu.id
         }" class="menu-list-item d-flex items-center py-2">
-      <span class="w-100 pl-2 menu-name ${menu.soldOut ? "sold-out" : ""}">${
+      <span class="w-100 pl-2 menu-name ${menu.isSoldOut ? "sold-out" : ""}">${
           menu.name
         }</span>
       <button
@@ -145,11 +145,12 @@ function App() {
     }
   };
 
-  const soldOutMenu = (e) => {
+  const soldOutMenu = async (e) => {
     const menuId = e.target.closest("li").dataset.menuId;
-    this.menu[this.currentCategory][menuId].soldOut =
-      !this.menu[this.currentCategory][menuId].soldOut;
-    store.setLocalStorage(this.menu);
+    await MenuApi.toggleSoldOutMenu(this.currentCategory, menuId);
+    this.menu[this.currentCategory] = await MenuApi.getAllMenuByCategory(
+      this.currentCategory
+    );
     render();
   };
 

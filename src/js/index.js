@@ -50,6 +50,18 @@ const MenuApi = {
       console.error("에러 발생");
     }
   },
+
+  async deleteMenu(category, menuId) {
+    const response = await fetch(
+      `${BASE_URL}/category/${category}/menu/${menuId}`,
+      {
+        method: "DELETE",
+      }
+    );
+    if (!response.ok) {
+      console.error("에러 발생");
+    }
+  },
 };
 
 function App() {

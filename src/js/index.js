@@ -147,11 +147,13 @@ function App() {
     render();
   };
 
-  const removeMenuName = (e) => {
+  const removeMenuName = async (e) => {
     if (confirm("정말 삭제하시겠습니까?")) {
       const menuId = e.target.closest("li").dataset.menuId;
-      this.menu[this.currentCategory].splice(menuId, 1);
-      store.setLocalStorage(this.menu);
+      await MenuApi.deleteMenu(this.currentCategory, menuId);
+      this.menu[this.currentCategory] = await MenuApi.getAllMenuByCategory(
+        this.currentCategory
+      );
       render();
     }
   };

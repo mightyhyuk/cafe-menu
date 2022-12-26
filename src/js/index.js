@@ -20,7 +20,10 @@ function App() {
     initEventListeners();
   };
 
-  const render = () => {
+  const render = async () => {
+    this.menu[this.currentCategory] = await MenuApi.getAllMenuByCategory(
+      this.currentCategory
+    );
     $("#menu-list").innerHTML = this.menu[this.currentCategory]
       .map((menu) => {
         return `<li data-menu-id="${
@@ -64,12 +67,8 @@ function App() {
       alert("값을 입력하세요.");
       return;
     }
-
     const menuName = $("#menu-name").value;
     await MenuApi.createMenu(this.currentCategory, menuName);
-    this.menu[this.currentCategory] = await MenuApi.getAllMenuByCategory(
-      this.currentCategory
-    );
     render();
     $("#menu-name").value = "";
   };
@@ -79,9 +78,6 @@ function App() {
     const $menuName = e.target.closest("li").querySelector(".menu-name");
     const updatedMenuName = prompt("메뉴명을 수정하세요.", $menuName.innerText);
     await MenuApi.updateMenu(this.currentCategory, updatedMenuName, menuId);
-    this.menu[this.currentCategory] = await MenuApi.getAllMenuByCategory(
-      this.currentCategory
-    );
     render();
   };
 
@@ -89,9 +85,6 @@ function App() {
     if (confirm("정말 삭제하시겠습니까?")) {
       const menuId = e.target.closest("li").dataset.menuId;
       await MenuApi.deleteMenu(this.currentCategory, menuId);
-      this.menu[this.currentCategory] = await MenuApi.getAllMenuByCategory(
-        this.currentCategory
-      );
       render();
     }
   };
@@ -99,9 +92,6 @@ function App() {
   const soldOutMenu = async (e) => {
     const menuId = e.target.closest("li").dataset.menuId;
     await MenuApi.toggleSoldOutMenu(this.currentCategory, menuId);
-    this.menu[this.currentCategory] = await MenuApi.getAllMenuByCategory(
-      this.currentCategory
-    );
     render();
   };
 

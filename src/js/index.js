@@ -153,7 +153,6 @@ function App() {
       this.menu[this.currentCategory].splice(menuId, 1);
       store.setLocalStorage(this.menu);
       render();
-      updateMenuCount();
     }
   };
 

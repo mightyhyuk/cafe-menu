@@ -123,9 +123,7 @@ function App() {
     });
 
     $("nav").addEventListener("click", async (e) => {
-      const isCategoryButton =
-        e.target.classList.contains("cafe-category-name");
-      if (isCategoryButton) {
+      if (e.target.classList.contains("cafe-category-name")) {
         const categoryName = e.target.dataset.categoryName;
         this.currentCategory = categoryName;
         $("#category-title").innerText = `${e.target.innerText} 메뉴 관리`;

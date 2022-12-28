@@ -95,6 +95,15 @@ function App() {
     render();
   };
 
+  const changeCategory = (e) => {
+    if (e.target.classList.contains("cafe-category-name")) {
+      const categoryName = e.target.dataset.categoryName;
+      this.currentCategory = categoryName;
+      $("#category-title").innerText = `${e.target.innerText} 메뉴 관리`;
+      render();
+    }
+  };
+
   const initEventListeners = () => {
     $("#menu-list").addEventListener("click", (e) => {
       if (e.target.classList.contains("menu-edit-button")) {
@@ -122,14 +131,7 @@ function App() {
       addMenuName();
     });
 
-    $("nav").addEventListener("click", async (e) => {
-      if (e.target.classList.contains("cafe-category-name")) {
-        const categoryName = e.target.dataset.categoryName;
-        this.currentCategory = categoryName;
-        $("#category-title").innerText = `${e.target.innerText} 메뉴 관리`;
-        render();
-      }
-    });
+    $("nav").addEventListener("click", changeCategory);
   };
 }
 

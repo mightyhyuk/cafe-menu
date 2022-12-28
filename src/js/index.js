@@ -64,7 +64,7 @@ function App() {
 
   const addMenuName = async () => {
     if ($("#menu-name").value === "") {
-      alert("값을 입력하세요.");
+      alert("값을 입력해주세요.");
       return;
     }
 

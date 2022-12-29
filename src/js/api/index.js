@@ -1,5 +1,17 @@
 const BASE_URL = "http://localhost:3000/api";
 
+const HTTP_METHOD = {
+  POST(data) {
+    return {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
+  },
+};
+
 const request = async (url, option) => {
   const response = await fetch(url, option);
   if (!response.ok) {

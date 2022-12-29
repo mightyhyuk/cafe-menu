@@ -1,5 +1,13 @@
 const BASE_URL = "http://localhost:3000/api";
 
+const request = async (url, option) => {
+  const response = await fetch(url, option);
+  if (!response.ok) {
+    alert("에러가 발생했습니다.");
+    console.error("에러 발생");
+  }
+};
+
 const MenuApi = {
   async getAllMenuByCategory(category) {
     const response = await fetch(`${BASE_URL}/category/${category}/menu`);

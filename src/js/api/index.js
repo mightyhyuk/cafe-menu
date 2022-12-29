@@ -23,8 +23,7 @@ const request = async (url, option) => {
 
 const MenuApi = {
   async getAllMenuByCategory(category) {
-    const response = await fetch(`${BASE_URL}/category/${category}/menu`);
-    return response.json();
+    return request(`${BASE_URL}/category/${category}/menu`);
   },
 
   async createMenu(category, name) {

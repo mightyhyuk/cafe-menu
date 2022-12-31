@@ -27,17 +27,10 @@ const MenuApi = {
   },
 
   async createMenu(category, name) {
-    const response = await fetch(`${BASE_URL}/category/${category}/menu`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name }),
-    });
-    if (!response.ok) {
-      alert("에러가 발생했습니다.");
-      console.error("에러 발생");
-    }
+    return request(
+      `${BASE_URL}/category/${category}/menu`,
+      HTTP_METHOD.POST({ name })
+    );
   },
 
   async updateMenu(category, name, menuId) {

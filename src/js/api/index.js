@@ -43,21 +43,10 @@ const MenuApi = {
   },
 
   async updateMenu(category, name, menuId) {
-    const response = await fetch(
+    return request(
       `${BASE_URL}/category/${category}/menu/${menuId}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name }),
-      }
+      HTTP_METHOD.PUT({ name })
     );
-    if (!response.ok) {
-      alert("에러가 발생했습니다.");
-      console.error("에러 발생");
-    }
-    return response.json();
   },
 
   async toggleSoldOutMenu(category, menuId) {

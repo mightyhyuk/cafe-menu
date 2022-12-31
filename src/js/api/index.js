@@ -19,6 +19,11 @@ const HTTP_METHOD = {
       body: data ? JSON.stringify(data) : null,
     };
   },
+  DELETE() {
+    return {
+      method: "DELETE",
+    };
+  },
 };
 
 const request = async (url, option) => {
@@ -28,6 +33,15 @@ const request = async (url, option) => {
     console.error("에러 발생");
   }
   return response.json();
+};
+
+const requestWithoutJson = async (url, option) => {
+  const response = await fetch(url, option);
+  if (!response.ok) {
+    alert("에러가 발생했습니다.");
+    console.error("에러 발생");
+  }
+  return response;
 };
 
 const MenuApi = {
@@ -57,16 +71,10 @@ const MenuApi = {
   },
 
   async deleteMenu(category, menuId) {
-    const response = await fetch(
+    return requestWithoutJson(
       `${BASE_URL}/category/${category}/menu/${menuId}`,
-      {
-        method: "DELETE",
-      }
+      HTTP_METHOD.DELETE()
     );
-    if (!response.ok) {
-      alert("에러가 발생했습니다.");
-      console.error("에러 발생");
-    }
   },
 };
 

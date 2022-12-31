@@ -10,6 +10,15 @@ const HTTP_METHOD = {
       body: JSON.stringify(data),
     };
   },
+  POST(data) {
+    return {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
+  },
 };
 
 const request = async (url, option) => {

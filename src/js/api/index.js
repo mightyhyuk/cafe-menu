@@ -16,7 +16,7 @@ const HTTP_METHOD = {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: data ? JSON.stringify(data) : null,
     };
   },
 };
@@ -50,16 +50,10 @@ const MenuApi = {
   },
 
   async toggleSoldOutMenu(category, menuId) {
-    const response = await fetch(
+    return request(
       `${BASE_URL}/category/${category}/menu/${menuId}/soldout`,
-      {
-        method: "PUT",
-      }
+      HTTP_METHOD.PUT()
     );
-    if (!response.ok) {
-      alert("에러가 발생했습니다.");
-      console.error("에러 발생");
-    }
   },
 
   async deleteMenu(category, menuId) {

@@ -1,5 +1,4 @@
 import { $ } from "./utils/dom.js";
-import store from "./store/index.js";
 import MenuApi from "./api/index.js";
 
 function App() {

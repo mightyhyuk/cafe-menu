@@ -7,7 +7,7 @@ function App() {
     frappuccino: [],
     blended: [],
     teavana: [],
-    desert: [],
+    dessert: [],
   };
   this.currentCategory = "espresso";
 

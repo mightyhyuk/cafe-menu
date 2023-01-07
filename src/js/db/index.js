@@ -1,4 +1,4 @@
-const store = {
+const storage = {
   setLocalStorage(menu) {
     localStorage.setItem("menu", JSON.stringify(menu));
   },
@@ -7,4 +7,4 @@ const store = {
   },
 };
 
-export default store;
+export default storage;
